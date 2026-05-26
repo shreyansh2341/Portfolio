@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design System: CSS Custom Properties ── */
+:root {
+  --bg: #0a0a0a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(0, 217, 255, 0.2);
+  --cyan-rgb: 0, 217, 255;
+  --amber-rgb: 245, 158, 11;
+  --violet-rgb: 167, 139, 250;
+  --cyan: rgb(var(--cyan-rgb));
+  --amber: rgb(var(--amber-rgb));
+  --violet: rgb(var(--violet-rgb));
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: rgba(255, 255, 255, 0.35);
+  --glass-bg: rgba(10, 10, 10, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.3);
+  --cursor-glow: rgba(0, 217, 255, 0.07);
+  --cursor-dot: rgba(0, 217, 255, 0.9);
+  --cursor-dot-shadow: rgba(0, 217, 255, 0.6);
+  --cursor-glass-bg: rgba(255, 255, 255, 0.03);
+  --cursor-glass-border: rgba(255, 255, 255, 0.15);
+  --cursor-glass-highlight: rgba(255, 255, 255, 0.40);
+  --cursor-trail: 0, 217, 255;
+  --grid-opacity: 0.015;
+  --globe-particle-opacity: 0.7;
+  --globe-bg-particle-opacity: 0.12;
+  color-scheme: dark;
+}
+
+/* Light mode overrides */
+.light {
+  --bg: #f8fafc;
+  --bg-card: rgba(0, 0, 0, 0.03);
+  --bg-card-hover: rgba(0, 0, 0, 0.06);
+  --border: rgba(0, 0, 0, 0.1);
+  --border-accent: rgba(0, 180, 220, 0.25);
+  --cyan-rgb: 8, 145, 178;
+  --amber-rgb: 217, 119, 6;
+  --violet-rgb: 124, 58, 237;
+  --cyan: rgb(var(--cyan-rgb));
+  --amber: rgb(var(--amber-rgb));
+  --violet: rgb(var(--violet-rgb));
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: rgba(0, 0, 0, 0.35);
+  --glass-bg: rgba(248, 250, 252, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.08);
+  --cursor-glow: rgba(8, 145, 178, 0.1);
+  --cursor-dot: rgba(8, 145, 178, 0.95);
+  --cursor-dot-shadow: rgba(8, 145, 178, 0.5);
+  --cursor-glass-bg: rgba(0, 0, 0, 0.04);
+  --cursor-glass-border: rgba(0, 0, 0, 0.12);
+  --cursor-glass-highlight: rgba(0, 0, 0, 0.15);
+  --cursor-trail: 8, 145, 178;
+  --grid-opacity: 0.04;
+  --globe-particle-opacity: 0.55;
+  --globe-bg-particle-opacity: 0.08;
+  color-scheme: light;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-background font-sans antialiased min-h-screen overflow-x-hidden;
+    cursor: none;
+  }
+
+  a, button, input, textarea, select {
+    cursor: none;
+  }
+
+  ::selection {
+    background: rgba(0, 217, 255, 0.2);
+    color: var(--cyan);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 217, 255, 0.2);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 217, 255, 0.4);
+  }
+}
+
+/* ── Glassmorphism Utilities ── */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 32px rgba(0, 217, 255, 0.06);
+}
+
+.glass-strong {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-nav {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px var(--glass-shadow);
+}
+
+/* ── Text Gradient Shimmer ── */
+.text-gradient-cyan {
+  background: linear-gradient(90deg, var(--amber), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-shimmer {
+  background: linear-gradient(
+    120deg,
+    var(--cyan) 0%,
+    var(--violet) 50%,
+    var(--amber) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerGradient 4s linear infinite;
+}
+
+@keyframes shimmerGradient {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Hero Circle Backgrounds ── */
+.circle-bg {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  pointer-events: none;
+}
+
+/* ── Floating Icon Animation ── */
+.icon-float {
+  animation: floatIcon var(--dur, 5s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes floatIcon {
+  0%, 100% { margin-top: 0; }
+  33% { margin-top: -10px; }
+  66% { margin-top: 5px; }
+}
+
+/* ── Scrolling Marquee ── */
+.marquee-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2.5rem;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
+}
+
+.animate-marquee:hover, .animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Project Card Hover ── */
+.proj-card {
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.proj-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Scroll Timeline Progress ── */
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  background: var(--border);
+  height: 100%;
+}
+
+.timeline-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cyan), var(--violet));
+  transition: height 0.1s linear;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  background: var(--cyan);
+  box-shadow: 0 0 12px rgba(0, 217, 255, 0.4);
+  position: absolute;
+  left: -5px;
+  z-index: 2;
+}
+
+/* ── Focus/Blur Text Animation (Experience) ── */
+.focus-text {
+  transition: filter 0.5s ease, opacity 0.5s ease;
+}
+
+.focus-text.blurred {
+  filter: blur(4px);
+  opacity: 0.4;
+}
+
+.focus-text.focused {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* ── Bracket Indicators ── */
+.bracket-box {
+  position: relative;
+}
+
+.bracket-box .bracket {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--cyan);
+  border-radius: 3px;
+  filter: drop-shadow(0 0 4px var(--cyan));
+  transition: all 0.3s ease;
+}
+
+.bracket-box .bracket.tl { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.bracket-box .bracket.tr { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+.bracket-box .bracket.bl { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+.bracket-box .bracket.br { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+/* ── Glow Button ── */
+.glow-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.glow-btn:hover {
+  transform: scale(1.03);
+}
+
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 12%;
+  right: 12%;
+  height: 35%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.18) 0%, transparent 100%);
+  border-radius: 100px;
+  pointer-events: none;
+}
+
+/* ── Loading Screen ── */
+.loading-container {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.loading-container.exit {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+/* ── Responsive Touch: hide custom cursor on mobile ── */
+@media (pointer: coarse) {
+  body, a, button, input, textarea, select {
+    cursor: auto !important;
+  }
+}
+
+/* ── Marquee Card Wave Floating ── */
+.marquee-item-wave {
+  animation: marqueeWaveFloat 5s ease-in-out infinite;
+  animation-delay: var(--wave-delay, 0s);
+}
+
+@keyframes marqueeWaveFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* Pause marquee tracks on hover */
+.marquee-track:hover {
+  animation-play-state: paused;
+}
