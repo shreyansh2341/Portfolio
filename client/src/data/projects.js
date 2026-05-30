@@ -14,13 +14,14 @@ export const PROJECTS = [
     icon: Globe
   },
   {
-    title: 'UPI Fraud Detection',
+    title: 'Netra (UPI Fraud Detection)',
     role: 'AI & Deep Learning Security',
     category: 'AI/ML',
     duration: '2025',
     description: 'Hybrid machine learning architecture combining Deep Learning (LSTM & Autoencoders) with Ensemble models (XGBoost, Random Forest) to identify fraudulent UPI transaction patterns in real-time. Built using PaySim dataset.',
     tech: ['Python', 'TensorFlow/Keras', 'XGBoost', 'Random Forest', 'Pandas', 'NumPy'],
     github: 'https://github.com/shreyansh2341/Fraud_Detection_Model_Paysim_CC',
+    live: 'https://netra-fraud-dashboard.streamlit.app/',
     color: '#a78bfa', // violet
     icon: BrainCircuit
   },

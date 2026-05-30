@@ -3,12 +3,22 @@ const cors = require('cors');
 const path = require('path');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
+
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 5 requests per windowMs
+  message: { success: false, error: 'Too many requests from this IP, please try again after 15 minutes.' }
+});
 
 // Serve static PDF resume/CV files if needed
 app.use('/pdfs', express.static(path.join(__dirname, '../..')));
@@ -23,7 +33,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Contact form endpoint
-app.post('/api/contact', async (req, res) => {
+app.post('/api/contact', contactLimiter, async (req, res) => {
   const { name, email, message } = req.body;
   
   if (!name || !email || !message) {

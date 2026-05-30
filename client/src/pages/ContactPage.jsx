@@ -10,6 +10,7 @@ export default function ContactPage() {
   // Contact form submission handler
   const handleContactSubmit = async (e) => {
     e.preventDefault();
+    if (submitStatus.loading) return; // Prevent double-clicks
     setSubmitStatus({ loading: true, success: null, error: null });
     try {
       const response = await fetch('http://localhost:5000/api/contact', {
