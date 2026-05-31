@@ -51,10 +51,36 @@ const EDUCATION = [
 ];
 
 const CERTS = [
-  'IBM Full Stack Software Developer (Coursera)',
-  'Machine Learning Specialization (Coursera)',
-  'JavaScript Algorithms & Data Structures (freeCodeCamp)',
-  'MongoDB Basics (MongoDB University)',
+  {
+    title: 'HTML Certification',
+    description: 'Demonstrates strong foundational knowledge in web markup and structure.',
+    link: '/certificates/HTML_Certification.jpeg'
+  },
+  {
+    title: 'CSS Certification',
+    description: 'Demonstrates proficiency in styling, layout, and responsive web design.',
+    link: '/certificates/CSS_Certification.jpeg'
+  },
+  {
+    title: 'Python Certification',
+    description: 'Covers fundamental Python programming concepts, data structures, and algorithms.',
+    link: '/certificates/Python Certificate.pdf'
+  },
+  {
+    title: 'Software Developer Internship',
+    description: 'Internship certificate from Technewity Labs for my role as a Software Developer Intern.',
+    link: '/certificates/Shreyansh _Internship.pdf'
+  },
+  {
+    title: 'Tata Crucible Prelims Level 1',
+    description: 'Successfully cleared the preliminary Level 1 of the prestigious Tata Crucible Hackathon/Quiz.',
+    link: '/certificates/Shreyansh_Tata_Cruible_Prelims_Level1.pdf'
+  },
+  {
+    title: 'Professional Certification',
+    description: 'General certification validating professional skills and competencies.',
+    link: '/certificates/Shreyansh Rai_Certificate.pdf'
+  }
 ];
 
 export default function AboutPage() {
@@ -209,19 +235,27 @@ export default function AboutPage() {
           className="mb-20"
         >
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-8" style={{ color: 'var(--text-primary)' }}>Certifications</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {CERTS.map((cert, i) => (
-              <motion.div
+              <motion.a
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="glass-card rounded-xl p-4 flex items-center gap-3"
+                className="glass-card rounded-xl p-5 flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer"
               >
-                <Award className="w-5 h-5 flex-shrink-0" style={{ color: 'var(--amber)' }} />
-                <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>{cert}</span>
-              </motion.div>
+                <div className="flex items-center gap-3">
+                  <Award className="w-6 h-6 flex-shrink-0" style={{ color: 'var(--amber)' }} />
+                  <h3 className="font-display text-base font-bold" style={{ color: 'var(--text-primary)' }}>{cert.title}</h3>
+                </div>
+                <p className="text-sm mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  {cert.description}
+                </p>
+              </motion.a>
             ))}
           </div>
         </motion.div>
@@ -235,11 +269,11 @@ export default function AboutPage() {
         >
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="http://localhost:5000/pdfs/Shreyansh_Rai_Resume.pdf"
+              href="/pdfs/Shreyansh_Rai_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download
-              className="glow-btn inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm"
+              className="glow-btn inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm cursor-pointer"
               style={{
                 background: 'linear-gradient(135deg, rgba(0,217,255,0.15), rgba(167,139,250,0.15))',
                 border: '1px solid rgba(0,217,255,0.3)',
@@ -249,11 +283,11 @@ export default function AboutPage() {
               <Download className="w-4 h-4" /> Download Resume
             </a>
             <a
-              href="http://localhost:5000/pdfs/Shreyansh_Rai_CV.pdf"
+              href="/pdfs/Shreyansh_Rai_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download
-              className="glow-btn inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm"
+              className="glow-btn inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm cursor-pointer"
               style={{
                 border: '1px solid rgba(245,158,11,0.3)',
                 background: 'rgba(245,158,11,0.05)',

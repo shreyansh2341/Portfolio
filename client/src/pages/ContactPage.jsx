@@ -132,7 +132,7 @@ export default function ContactPage() {
             transition={{ delay: 0.1 }}
             className="md:col-span-7"
           >
-            <form onSubmit={handleContactSubmit} className="glass-card p-8 rounded-2xl border space-y-6 h-full flex flex-col justify-between" style={{ borderColor: 'var(--border)' }}>
+            <form onSubmit={handleContactSubmit} className="relative z-50 glass-card p-8 rounded-2xl border space-y-6 h-full flex flex-col justify-between" style={{ borderColor: 'var(--border)' }}>
               <div className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
