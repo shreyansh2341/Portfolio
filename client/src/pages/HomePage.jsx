@@ -136,7 +136,7 @@ export default function HomePage() {
           </motion.p>
 
           {/* Rotating role word */}
-          <div className="mb-4 flex justify-center h-10 items-center overflow-hidden">
+          <div className="mb-4 flex justify-center min-h-[4.5rem] sm:min-h-[3rem] items-center overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.span
                 key={roleIndex}
@@ -144,7 +144,7 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="font-display font-bold text-gradient-cyan block text-center text-3xl md:text-4xl leading-none tracking-[-0.02em]"
+                className="font-display font-bold text-gradient-cyan block text-center text-2xl sm:text-3xl md:text-4xl leading-tight tracking-[-0.02em] max-w-xs sm:max-w-none"
               >
                 {ROLES[roleIndex]}
               </motion.span>
