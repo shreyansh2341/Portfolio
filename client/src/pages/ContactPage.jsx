@@ -13,17 +13,26 @@ export default function ContactPage() {
     if (submitStatus.loading) return; // Prevent double-clicks
     setSubmitStatus({ loading: true, success: null, error: null });
     try {
-      const response = await fetch('https://portfolio-lg45.onrender.com/api/contact', {
+      // NOTE: Replace the access_key below with your own from https://web3forms.com
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
       });
       const data = await response.json();
       if (response.ok && data.success) {
-        setSubmitStatus({ loading: false, success: data.message, error: null });
+        setSubmitStatus({ loading: false, success: "Thank you for your message! It has been successfully sent.", error: null });
         setFormData({ name: '', email: '', message: '' });
       } else {
-        throw new Error(data.error || 'Something went wrong.');
+        throw new Error(data.message || 'Something went wrong.');
       }
     } catch (err) {
       setSubmitStatus({ loading: false, success: null, error: err.message });
