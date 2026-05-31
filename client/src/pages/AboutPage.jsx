@@ -237,16 +237,13 @@ export default function AboutPage() {
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-8" style={{ color: 'var(--text-primary)' }}>Certifications</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {CERTS.map((cert, i) => (
-              <motion.a
-                href={cert.link}
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="glass-card rounded-xl p-5 flex flex-col gap-2 hover:scale-[1.02] transition-transform cursor-pointer"
+                className="glass-card rounded-xl p-5 flex flex-col gap-2 hover:-translate-y-1 transition-transform"
               >
                 <div className="flex items-center gap-3">
                   <Award className="w-6 h-6 flex-shrink-0" style={{ color: 'var(--amber)' }} />
@@ -255,10 +252,22 @@ export default function AboutPage() {
                 <p className="text-sm mt-2 leading-relaxed flex-1" style={{ color: 'var(--text-secondary)' }}>
                   {cert.description}
                 </p>
-                <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider transition-colors" style={{ color: 'var(--cyan)' }}>
-                  <Eye className="w-3.5 h-3.5" /> View Certificate
+                <div className="mt-3 flex">
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glow-btn inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-xs cursor-pointer"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(0,217,255,0.15), rgba(167,139,250,0.15))',
+                      border: '1px solid rgba(0,217,255,0.3)',
+                      color: 'var(--cyan)',
+                    }}
+                  >
+                    <Eye className="w-3.5 h-3.5" /> View Certificate
+                  </a>
                 </div>
-              </motion.a>
+              </motion.div>
             ))}
           </div>
         </motion.div>
