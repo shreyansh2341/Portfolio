@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Terminal, Server, Database, Cpu, Award, BookOpen } from 'lucide-react';
+import { Download, Terminal, Server, Database, Cpu, Award, BookOpen, Eye } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 
 const STATS = [
@@ -252,9 +252,12 @@ export default function AboutPage() {
                   <Award className="w-6 h-6 flex-shrink-0" style={{ color: 'var(--amber)' }} />
                   <h3 className="font-display text-base font-bold" style={{ color: 'var(--text-primary)' }}>{cert.title}</h3>
                 </div>
-                <p className="text-sm mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-sm mt-2 leading-relaxed flex-1" style={{ color: 'var(--text-secondary)' }}>
                   {cert.description}
                 </p>
+                <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider transition-colors" style={{ color: 'var(--cyan)' }}>
+                  <Eye className="w-3.5 h-3.5" /> View Certificate
+                </div>
               </motion.a>
             ))}
           </div>
@@ -267,35 +270,74 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/pdfs/Shreyansh_Rai_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className="glow-btn inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm cursor-pointer"
-              style={{
-                background: 'linear-gradient(135deg, rgba(0,217,255,0.15), rgba(167,139,250,0.15))',
-                border: '1px solid rgba(0,217,255,0.3)',
-                color: 'var(--cyan)',
-              }}
-            >
-              <Download className="w-4 h-4" /> Download Resume
-            </a>
-            <a
-              href="/pdfs/Shreyansh_Rai_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className="glow-btn inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm cursor-pointer"
-              style={{
-                border: '1px solid rgba(245,158,11,0.3)',
-                background: 'rgba(245,158,11,0.05)',
-                color: 'var(--amber)',
-              }}
-            >
-              <Download className="w-4 h-4" /> Download CV
-            </a>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            {/* Resume Buttons */}
+            <div className="flex flex-col items-center gap-3">
+              <div className="text-xs font-mono tracking-widest uppercase" style={{ color: 'var(--text-muted)' }}>Resume</div>
+              <div className="flex gap-2">
+                <a
+                  href="/pdfs/Shreyansh_Rai_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glow-btn inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm cursor-pointer"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0,217,255,0.15), rgba(167,139,250,0.15))',
+                    border: '1px solid rgba(0,217,255,0.3)',
+                    color: 'var(--cyan)',
+                  }}
+                >
+                  <Eye className="w-4 h-4" /> View
+                </a>
+                <a
+                  href="/pdfs/Shreyansh_Rai_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="glow-btn inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm cursor-pointer"
+                  style={{
+                    border: '1px solid rgba(0,217,255,0.3)',
+                    background: 'rgba(0,217,255,0.05)',
+                    color: 'var(--cyan)',
+                  }}
+                >
+                  <Download className="w-4 h-4" /> Download
+                </a>
+              </div>
+            </div>
+
+            {/* CV Buttons */}
+            <div className="flex flex-col items-center gap-3">
+              <div className="text-xs font-mono tracking-widest uppercase" style={{ color: 'var(--text-muted)' }}>Curriculum Vitae</div>
+              <div className="flex gap-2">
+                <a
+                  href="/pdfs/Shreyansh_Rai_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glow-btn inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm cursor-pointer"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(245,158,11,0.15), rgba(239,68,68,0.15))',
+                    border: '1px solid rgba(245,158,11,0.3)',
+                    color: 'var(--amber)',
+                  }}
+                >
+                  <Eye className="w-4 h-4" /> View
+                </a>
+                <a
+                  href="/pdfs/Shreyansh_Rai_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="glow-btn inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm cursor-pointer"
+                  style={{
+                    border: '1px solid rgba(245,158,11,0.3)',
+                    background: 'rgba(245,158,11,0.05)',
+                    color: 'var(--amber)',
+                  }}
+                >
+                  <Download className="w-4 h-4" /> Download
+                </a>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

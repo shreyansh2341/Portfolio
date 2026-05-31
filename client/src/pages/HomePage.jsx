@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, FileText, MessageSquare } from 'lucide-react';
+import { ArrowRight, FileText, MessageSquare, Eye } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { PROJECTS } from '../data/projects';
 
@@ -204,17 +204,32 @@ export default function HomePage() {
           >
             View Projects <ArrowRight className="w-4 h-4" />
           </Link>
-          <Link
-            to="/about"
-            className="glow-btn inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold"
+          <a
+            href="/pdfs/Shreyansh_Rai_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glow-btn inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold cursor-pointer"
             style={{
               border: '1px solid rgba(245,158,11,0.25)',
               background: 'rgba(245,158,11,0.05)',
               color: 'rgba(245,158,11,0.85)',
             }}
           >
-            <FileText className="w-3.5 h-3.5" /> Resume & CV
-          </Link>
+            <Eye className="w-4 h-4" /> View Resume
+          </a>
+          <a
+            href="/pdfs/Shreyansh_Rai_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glow-btn inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold cursor-pointer"
+            style={{
+              border: '1px solid rgba(16,185,129,0.25)',
+              background: 'rgba(16,185,129,0.05)',
+              color: 'rgba(16,185,129,0.85)',
+            }}
+          >
+            <Eye className="w-4 h-4" /> View CV
+          </a>
           <Link
             to="/contact"
             className="glow-btn inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold"
